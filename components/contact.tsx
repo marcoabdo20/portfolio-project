@@ -1,46 +1,47 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Instagram } from "lucide-react";
 
 /* SVG Icons */
 const Mail = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <rect x="2" y="4" width="20" height="16" rx="2" />
-    <path d="M22 6l-10 7L2 6" />
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <rect width="20" height="16" x="2" y="4" rx="2"/>
+    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
   </svg>
 );
 
 const Linkedin = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <rect x="2" y="2" width="20" height="20" rx="2" />
-    <path d="M8 11v5" />
-    <path d="M8 8v1" />
-    <path d="M12 11v5" />
-    <path d="M16 11v5" />
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+    <rect width="4" height="12" x="2" y="9"/>
+    <circle cx="4" cy="4" r="2"/>
   </svg>
 );
 
 const Github = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M12 2a10 10 0 0 0-3 19.5c.5.1.7-.2.7-.5v-1.8c-3 .7-3.6-1.4-3.6-1.4-.5-1.2-1.2-1.5-1.2-1.5-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 .1 1.6-.7 1.9-1.1-.8-.1-1.6-.4-1.6-1.9 0-.4.1-.8.4-1.1-.4-.1-1-.5 0-1 0 0 .9-.3 3 .8a10.5 10.5 0 0 1 5.5 0c2.1-1.1 3-.8 3-.8 1 .5.4.9.1 1 .3.3.4.6.4 1.1 0 1.5-.8 1.8-1.6 1.9.5.4 1.1 1.1 1.1 2.3v3.4c0 .3.2.6.7.5A10 10 0 0 0 12 2z" />
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/>
+    <path d="M9 18c-4.51 2-5-2-7-2"/>
   </svg>
 );
 
 const Twitter = (props: React.SVGProps<SVGSVGElement>) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" {...props}>
-    <path d="M23 4a10.9 10.9 0 0 1-3.1.9A4.8 4.8 0 0 0 22.4 2a9.6 9.6 0 0 1-3.1 1.2A4.8 4.8 0 0 0 12 6.3 13.6 13.6 0 0 1 1.6 3 4.8 4.8 0 0 0 3 9.2 4.7 4.7 0 0 1 .9 8.8v.1a4.8 4.8 0 0 0 3.9 4.7 4.8 4.8 0 0 1-2.2.1 4.8 4.8 0 0 0 4.5 3.3A9.6 9.6 0 0 1 1 19.5 13.6 13.6 0 0 0 7.4 21c8.8 0 13.6-7.3 13.6-13.6V7.5A9.8 9.8 0 0 0 23 4z" />
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/>
   </svg>
 );
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
-
-  // متغير client-only لتجنب Hydration mismatch
   const [isClient, setIsClient] = useState(false);
+
   useEffect(() => setIsClient(true), []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -49,22 +50,27 @@ export default function Contact() {
     setErrorMessage("");
 
     try {
-      const res = await fetch("/api/contact", {
+      const formDataToSend = new FormData();
+      formDataToSend.append("access_key", "79fb01b2-c7e7-4963-a3ed-ba507b0012b5");
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("message", formData.message);
+
+      const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: formDataToSend
       });
 
-      if (!res.ok) {
-        const data = await res.json().catch(() => ({}));
-        setErrorMessage(data?.error || "Failed to send message");
-        setStatus("error");
-        return;
-      }
+      const data = await response.json();
 
-      setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 3000);
+      if (data.success) {
+        setStatus("success");
+        setFormData({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 3000);
+      } else {
+        setErrorMessage(data.message || "Failed to send message");
+        setStatus("error");
+      }
     } catch (err) {
       setErrorMessage("Network error. Please try again.");
       setStatus("error");
@@ -78,47 +84,56 @@ export default function Contact() {
     { icon: Mail, href: "mailto:marcoabdo20@gmail.com", label: "Email" },
   ];
 
-  if (!isClient) return null; // منع Hydration mismatch
+  if (!isClient) return null;
 
   return (
-    <section id="contact" className="py-20 px-6">
-      <div className="max-w-4xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="mb-16 text-center">
+    <section id="contact" className="py-20 px-4">
+      <div className="container mx-auto max-w-6xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Let's Connect</h2>
-          <p className="text-lg text-foreground/70">
-            Have a project in mind? Let&apos;s collaborate and create something amazing together.
+          <p className="text-foreground/60 text-lg max-w-2xl mx-auto">
+            Have a project in mind? Let's collaborate and create something amazing together.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-12">
           <motion.form
+            onSubmit={handleSubmit}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            onSubmit={handleSubmit}
             className="space-y-6"
           >
             <input
               type="text"
-              required
+              name="name"
               placeholder="Your Name"
+              required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:border-primary transition-colors"
             />
             <input
               type="email"
-              required
+              name="email"
               placeholder="Your Email"
+              required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:border-primary transition-colors"
             />
             <textarea
-              required
-              rows={5}
+              name="message"
               placeholder="Your Message"
+              rows={6}
+              required
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               className="w-full px-4 py-3 bg-card border border-border rounded-lg focus:outline-none focus:border-primary transition-colors resize-none"
@@ -129,20 +144,35 @@ export default function Contact() {
               whileHover={{ scale: status === "sending" ? 1 : 1.05 }}
               whileTap={{ scale: status === "sending" ? 1 : 0.95 }}
               className={`w-full px-6 py-3 rounded-lg font-medium transition-all ${
-                status === "sending" ? "bg-primary/60 cursor-not-allowed" : "bg-primary hover:shadow-lg hover:shadow-primary/50"
+                status === "sending"
+                  ? "bg-primary/60 cursor-not-allowed"
+                  : "bg-primary hover:shadow-lg hover:shadow-primary/50"
               } text-primary-foreground`}
             >
-              {status === "sending" ? "Sending..." : status === "success" ? "Message Sent! ✓" : status === "error" ? "Send Failed" : "Send Message"}
+              {status === "sending"
+                ? "Sending..."
+                : status === "success"
+                ? "Message Sent! ✓"
+                : status === "error"
+                ? "Send Failed"
+                : "Send Message"}
             </motion.button>
-
-            {status === "error" && errorMessage && <p className="text-sm text-red-500 mt-2 text-center">{errorMessage}</p>}
+            {status === "error" && errorMessage && (
+              <p className="text-sm text-red-500 mt-2 text-center">{errorMessage}</p>
+            )}
           </motion.form>
 
-          <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }} viewport={{ once: true }} className="flex flex-col justify-center space-y-8">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col justify-center space-y-8"
+          >
             <div>
               <h3 className="text-2xl font-bold mb-4">Get in Touch</h3>
               <p className="text-foreground/70 leading-relaxed">
-                I&apos;m always interested in hearing about new projects and opportunities. Feel free to reach out!
+                I'm always interested in hearing about new projects and opportunities. Feel free to reach out!
               </p>
             </div>
 
