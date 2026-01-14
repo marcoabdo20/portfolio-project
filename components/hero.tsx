@@ -175,7 +175,7 @@ export default function Hero() {
                 className="absolute right-0 mt-2 w-44 bg-background/95 backdrop-blur-md border border-neutral-200 rounded-lg shadow-lg z-50"
               >
                 <a
-                  href="/Marco Abdo Gress-CV.pdf"
+                  href="/Marco-Abdo-Gress-CV.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block px-4 py-2 text-sm hover:bg-primary/5"
@@ -185,7 +185,7 @@ export default function Hero() {
                 </a>
 
                 <a
-                  href="/Marco Abdo Gress-CV.pdf"
+                  href="/Marco-Abdo-Gress-CV.pdf"
                   download
                   className="block px-4 py-2 text-sm hover:bg-primary/5"
                   onClick={() => setShowCVOptions(false)}
