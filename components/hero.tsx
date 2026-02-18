@@ -128,9 +128,7 @@ export default function Hero() {
           variants={itemVariants}
           className="text-lg text-foreground/70 max-w-2xl mx-auto mb-12 leading-relaxed"
         >
-          Crafting elegant, performant digital experiences with modern web
-          technologies. Specializing in React, TypeScript, and creating
-          interfaces that delight users.
+          Engineering responsive, performance-optimized web and mobile solutions with React.js and React Native, delivering seamless cross-platform experiences.
         </motion.p>
 
         {/* butons */}
