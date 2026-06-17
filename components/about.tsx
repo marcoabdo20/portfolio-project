@@ -54,7 +54,7 @@ export default function About() {
 
             <motion.div variants={itemVariants} className="space-y-4">
               <h3 className="text-xl font-bold text-primary">Education & Training</h3>
-              <ul className="space-y-3 text-foreground/70">
+              <ul aria-label="Education and training" className="space-y-3 text-foreground/70">
                 <li className="flex items-start gap-3">
                   <span className="text-primary mt-1">→</span>
                   <span>Bachelor's in Information Technology - Egyptian E-Learning University</span>
@@ -76,17 +76,25 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="relative"
+            className="relative will-change-transform"
           >
             <div className="relative h-96 rounded-lg overflow-hidden">
-              <img src="/modern-developer-workspace-stockcake.jpg" alt="Marco's workspace" className="w-full h-full object-cover" />
+              <img 
+                src="/modern-developer-workspace-stockcake.jpg" 
+                alt="Marco Abdo - Front-End Developer workspace" 
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="w-full h-full object-cover" 
+              />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
             </div>
 
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY }}
-              className="absolute -bottom-6 -right-6 bg-card border border-border rounded-lg p-6 shadow-xl max-w-xs"
+              className="absolute -bottom-6 -right-6 bg-card border border-border rounded-lg p-6 shadow-xl max-w-xs will-change-transform"
+              title="Technologies I work with"
             >
               <p className="text-sm text-foreground/70 mb-2">Tech Stack</p>
               <div className="flex flex-wrap gap-2">
