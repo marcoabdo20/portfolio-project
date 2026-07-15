@@ -100,12 +100,23 @@ const projects = [
   },
   {
     id: 8,
-    title: "Doctor Appointment Booking",
+    title: "Doctor Appointment Booking — Full-Stack",
     description:
       "A full-stack healthcare web application that allows patients to book appointments with doctors online, view doctor profiles and reviews, and manage their medical appointments. Doctors can manage their schedules, confirm appointments, and view patient reviews.",
     image: "/doctors.png",
     tags: ["React", "Firebase", "Material-UI"],
-    links: { demo: "https://doctor-app-3ykf.vercel.app/", github: "https://github.com/marcoabdo20/doctor-app/" },
+    links: { demo: "https://doctor-app-blond.vercel.app/", github: "https://github.com/marcoabdo20/doctor-app/" },
+    hasDemo: true,
+    hasCode: true,
+  },
+  {
+    id: 9,
+    title: "Electronics E-Commerce Store — Full-Stack Marketplace",
+    description:
+      "A production-ready electronics marketplace with admin dashboard, real-time order tracking, and role-based authentication. Built for scalability with clean architecture.",
+    image: "/electronics.png",
+    tags: ["React 18", "Firebase", "Cloudinary" , "Pure CSS"],
+    links: { demo: "https://electronics-store-2epx.vercel.app/", github: "https://github.com/marcoabdo20/electronics-store" },
     hasDemo: true,
     hasCode: true,
   },
@@ -375,11 +386,12 @@ export default function Projects() {
           viewport={{ once: true }}
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
-          {projects.map((project) => (
+          {[...projects].sort((a, b) => b.id - a.id).map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </motion.div>
       </div>
     </section>
+
   );
 }
