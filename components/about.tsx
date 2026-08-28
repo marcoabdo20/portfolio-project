@@ -1,12 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  GraduationCap,
-  Code2,
-  Sparkles,
-  ArrowRight,
-} from "lucide-react";
+import { GraduationCap, Code2, Sparkles, ArrowRight } from "lucide-react";
 
 export default function About() {
   const containerVariants = {
@@ -176,9 +171,7 @@ export default function About() {
             "
           >
             <span className="h-px w-8 bg-primary" />
-
             About Me
-
             <span className="h-px w-8 bg-primary" />
           </span>
 
@@ -193,9 +186,7 @@ export default function About() {
               lg:text-6xl
             "
           >
-            <span className="text-primary">
-              Who I Am
-            </span>
+            <span className="text-primary">Who I Am</span>
           </h2>
 
           {/* Description */}
@@ -211,9 +202,8 @@ export default function About() {
               md:text-base
             "
           >
-            Passionate about creating meaningful
-            digital experiences through modern
-            technologies and thoughtful design.
+            Passionate about creating meaningful digital experiences through
+            modern technologies and thoughtful design.
           </p>
 
           {/* Divider */}
@@ -270,9 +260,7 @@ export default function About() {
           >
             {/* Introduction */}
 
-            <motion.div
-              variants={itemVariants}
-            >
+            <motion.div variants={itemVariants}>
               <div className="mb-4 flex items-center gap-3">
                 <div
                   className="
@@ -294,7 +282,8 @@ export default function About() {
                 <div>
                   <p
                     className="
-                      text-[10px]
+                            text-base
+
                       font-semibold
                       uppercase
                       tracking-[0.2em]
@@ -318,23 +307,18 @@ export default function About() {
                   md:text-lg
                 "
               >
-                I'm a passionate Front-End Developer
-                with a keen eye for creating beautiful
-                and functional digital experiences on
-                both web and mobile platforms. With over
-                1 year of experience in web development
-                and mobile application development, I
-                specialize in React.js, React Native,
-                TypeScript, Next.js, and modern CSS
+                I'm a passionate Front-End Developer with a keen eye for
+                creating beautiful and functional digital experiences on both
+                web and mobile platforms. With over 1 year of experience in web
+                development and mobile application development, I specialize in
+                React.js, React Native, TypeScript, Next.js, and modern CSS
                 frameworks including Tailwind CSS.
               </p>
             </motion.div>
 
             {/* Second Paragraph */}
 
-            <motion.div
-              variants={itemVariants}
-            >
+            <motion.div variants={itemVariants}>
               <p
                 className="
                   text-base
@@ -343,12 +327,10 @@ export default function About() {
                   md:text-lg
                 "
               >
-                I am committed to writing clean,
-                maintainable, and scalable code, staying
-                updated with the latest web and mobile
-                technologies, and following best
-                practices to deliver high-quality
-                applications.
+                I am committed to writing clean, maintainable, and scalable
+                code, staying updated with the latest web and mobile
+                technologies, and following best practices to deliver
+                high-quality applications.
               </p>
             </motion.div>
 
@@ -470,8 +452,7 @@ export default function About() {
                         text-foreground/75
                       "
                     >
-                      Bachelor's in Information
-                      Technology - Egyptian E-Learning
+                      Bachelor's in Information Technology - Egyptian E-Learning
                       University
                     </p>
                   </div>
@@ -521,8 +502,7 @@ export default function About() {
                         text-foreground/75
                       "
                     >
-                      Front-End & Cross-Platform Mobile
-                      Developer - ITI Graduate
+                      Front-End & Cross-Platform Mobile Developer - ITI Graduate
                     </p>
                   </div>
                 </div>
@@ -553,8 +533,7 @@ export default function About() {
                         text-foreground/75
                       "
                     >
-                      Web Performance Optimization
-                      Course - Udemy
+                      Web Performance Optimization Course - Udemy
                     </p>
                   </div>
                 </div>
@@ -727,10 +706,7 @@ export default function About() {
                     "
                   >
                     Turning Ideas Into
-                    <span className="text-primary">
-                      {" "}
-                      Reality
-                    </span>
+                    <span className="text-primary"> Reality</span>
                   </h3>
                 </div>
               </div>
@@ -820,15 +796,14 @@ export default function About() {
                   gap-2
                 "
               >
-                {technologies.map(
-                  (tech) => (
-                    <motion.span
-                      key={tech}
-                      whileHover={{
-                        y: -2,
-                        scale: 1.03,
-                      }}
-                      className="
+                {technologies.map((tech) => (
+                  <motion.span
+                    key={tech}
+                    whileHover={{
+                      y: -2,
+                      scale: 1.03,
+                    }}
+                    className="
                         rounded-full
                         border
                         border-primary/10
@@ -844,11 +819,10 @@ export default function About() {
                         hover:bg-primary/10
                         hover:text-primary
                       "
-                    >
-                      {tech}
-                    </motion.span>
-                  )
-                )}
+                  >
+                    {tech}
+                  </motion.span>
+                ))}
               </div>
             </motion.div>
 
@@ -912,9 +886,7 @@ export default function About() {
             "
           >
             <span className="h-px w-12 bg-primary/20" />
-
             Passion • Code • Creativity
-
             <span className="h-px w-12 bg-primary/20" />
           </div>
         </motion.div>
