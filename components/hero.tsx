@@ -420,7 +420,7 @@ export default function Hero() {
             variants={nameContainerVariants}
             className="
               inline-block
-              text-gradient-gold
+              text-primary
             "
             aria-hidden="true"
           >
