@@ -42,6 +42,21 @@
   --sidebar-accent-foreground: oklch(0.95 0 0);
   --sidebar-border: oklch(0.2 0 0);
   --sidebar-ring: oklch(0.75 0.15 70);
+
+  /* --- Luxury system extensions (additive, derived from --primary) --- */
+  --gold-soft: oklch(0.75 0.15 70 / 0.12);
+  --gold-mid: oklch(0.75 0.15 70 / 0.35);
+  --gold-strong: oklch(0.75 0.15 70 / 0.65);
+  --gold-line: oklch(0.75 0.15 70 / 0.25);
+
+  /* Cursor-tracked spotlight position, updated by a few lines of JS (see note) */
+  --spot-x: 50%;
+  --spot-y: 50%;
+
+  /* Signature easing curves — the difference between "animated" and "designed" */
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-silk: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .dark {
@@ -127,12 +142,45 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  /* Gold text-selection instead of the default blue — small detail, big "someone designed this" signal */
+  ::selection {
+    background: var(--gold-strong);
+    color: var(--primary-foreground);
+  }
+
+  /* Slim gold-on-navy scrollbar (WebKit) */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+    border-radius: 999px;
+    border: 2px solid var(--background);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-mid);
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--secondary) var(--background);
+  }
 }
 
 /* Added smooth scroll behavior and custom animations */
 html {
   scroll-behavior: smooth;
 }
+
+/* ==========================================================================
+   LUXURY ANIMATION SYSTEM
+   A small, disciplined set of signature motions — not a grab-bag of effects.
+   Everything below is additive and opt-in via utility classes.
+   ========================================================================== */
 
 @keyframes float {
   0%,
@@ -147,10 +195,90 @@ html {
 @keyframes glow {
   0%,
   100% {
-    box-shadow: 0 0 20px rgba(191, 144, 0, 0.3);
+    box-shadow: 0 0 20px var(--gold-mid);
   }
   50% {
-    box-shadow: 0 0 40px rgba(191, 144, 0, 0.6);
+    box-shadow: 0 0 40px var(--gold-strong);
+  }
+}
+
+/* Signature: a slow diagonal shine that sweeps across gold text and buttons.
+   This is the single most "luxury editorial" motion in the whole system —
+   use it sparingly, on one hero element, not everywhere. */
+@keyframes shimmer-sweep {
+  0% {
+    background-position: -150% 0;
+  }
+  100% {
+    background-position: 250% 0;
+  }
+}
+
+/* Animated gradient for headline accents — slow, never distracting */
+@keyframes gradient-drift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Rotating conic gradient used to draw a slim animated gold border */
+@keyframes border-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+/* Scroll-reveal: pair with an IntersectionObserver toggling .is-visible */
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes underline-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes ken-burns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
   }
 }
 
@@ -160,4 +288,219 @@ html {
 
 .animate-glow {
   animation: glow 3s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s var(--ease-luxury) both;
+}
+
+.animate-ken-burns {
+  animation: ken-burns 12s var(--ease-silk) both;
+}
+
+/* --------------------------------------------------------------------------
+   Shimmering gold text — for a hero word, a price, a signature.
+   -------------------------------------------------------------------------- */
+.text-shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--primary) 30%,
+    oklch(0.95 0.05 90) 45%,
+    var(--primary) 60%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer-sweep 4.5s ease-in-out infinite;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(120deg, var(--primary), oklch(0.95 0.06 95), var(--primary));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-drift 6s ease-in-out infinite;
+}
+
+/* --------------------------------------------------------------------------
+   Reveal-on-scroll — attach `.reveal` to any element, then in JS:
+     const io = new IntersectionObserver(es => es.forEach(e =>
+       e.isIntersecting && e.target.classList.add('is-visible')));
+     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+   -------------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+}
+.reveal.is-visible {
+  animation: reveal-up 0.9s var(--ease-out-quart) forwards;
+}
+.reveal.is-visible:nth-child(2) {
+  animation-delay: 0.08s;
+}
+.reveal.is-visible:nth-child(3) {
+  animation-delay: 0.16s;
+}
+.reveal.is-visible:nth-child(4) {
+  animation-delay: 0.24s;
+}
+
+/* --------------------------------------------------------------------------
+   Animated gold underline — draws itself in on hover, from the left.
+   Usage: <span class="underline-gold">Explore</span>
+   -------------------------------------------------------------------------- */
+.underline-gold {
+  position: relative;
+  display: inline-block;
+}
+.underline-gold::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background: var(--primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-luxury);
+}
+.underline-gold:hover::after {
+  transform: scaleX(1);
+}
+
+/* --------------------------------------------------------------------------
+   Glass panel — for cards floating over imagery or gradients.
+   -------------------------------------------------------------------------- */
+.glass-panel {
+  background: color-mix(in oklch, var(--card) 55%, transparent);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--gold-line);
+}
+
+/* --------------------------------------------------------------------------
+   Rotating gold-edge border — wrap a button or featured card in
+   <div class="border-spin-wrap"><div class="border-spin-inner">…</div></div>
+   -------------------------------------------------------------------------- */
+.border-spin-wrap {
+  position: relative;
+  border-radius: var(--radius-lg);
+  padding: 1px;
+  overflow: hidden;
+}
+.border-spin-wrap::before {
+  content: "";
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    var(--primary) 40deg,
+    transparent 90deg
+  );
+  animation: border-spin 4s linear infinite;
+}
+.border-spin-inner {
+  position: relative;
+  border-radius: calc(var(--radius-lg) - 1px);
+  background: var(--card);
+  height: 100%;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   Magnetic hover lift — the standard interactive-card motion across the site.
+   -------------------------------------------------------------------------- */
+.lift-on-hover {
+  transition: transform 0.5s var(--ease-luxury), box-shadow 0.5s var(--ease-luxury);
+}
+.lift-on-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px -12px oklch(0 0 0 / 0.55), 0 0 0 1px var(--gold-line);
+}
+
+/* --------------------------------------------------------------------------
+   Cursor-tracked spotlight — a soft gold glow that follows the pointer.
+   Requires two lines of JS on the element:
+     el.addEventListener('pointermove', e => {
+       const r = el.getBoundingClientRect();
+       el.style.setProperty('--spot-x', `${e.clientX - r.left}px`);
+       el.style.setProperty('--spot-y', `${e.clientY - r.top}px`);
+     });
+   -------------------------------------------------------------------------- */
+.spotlight {
+  position: relative;
+  isolation: isolate;
+}
+.spotlight::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  background: radial-gradient(
+    360px circle at var(--spot-x) var(--spot-y),
+    var(--gold-soft),
+    transparent 70%
+  );
+  transition: opacity 0.4s ease;
+}
+.spotlight:hover::before {
+  opacity: 1;
+}
+
+/* --------------------------------------------------------------------------
+   Infinite marquee — for a logo strip / press strip.
+   Usage: <div class="marquee"><div class="marquee-track">…duplicated content…</div></div>
+   -------------------------------------------------------------------------- */
+.marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* --------------------------------------------------------------------------
+   Elegant fine-line divider with a centered gold diamond — a quiet signature
+   motif for separating sections without a heavy rule.
+   -------------------------------------------------------------------------- */
+.divider-luxury {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--primary);
+}
+.divider-luxury::before,
+.divider-luxury::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-line));
+}
+.divider-luxury::after {
+  background: linear-gradient(90deg, var(--gold-line), transparent);
+}
+
+/* Respect users who've asked for reduced motion — non-negotiable */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+  }
 }

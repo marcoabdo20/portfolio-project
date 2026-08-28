@@ -9,10 +9,12 @@ import Footer from "@/components/footer"
 import AnimatedBackground from "@/components/animated-background"
 
 export default function Home() {
-
   return (
-    <main className="relative min-h-screen overflow-hidden">
+    <main className="relative min-h-screen overflow-hidden bg-transparent">
+      {/* Animated Background */}
       <AnimatedBackground />
+
+      {/* Main Content */}
       <div className="relative z-10">
         <Navbar />
         <Hero />
