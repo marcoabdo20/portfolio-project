@@ -455,19 +455,19 @@ export default function Hero() {
               leading-relaxed
             "
           >
-            <span className="text-primary">Front-End Developer</span>
+            <span className="text-white">Front-End Developer</span>
 
             <span className="text-foreground/40 mx-2">|</span>
 
-            <span className="text-shimmer font-medium">React.js</span>
+            <span className="text-primary font-medium">React.js</span>
 
             <span className="text-foreground/40 mx-2">|</span>
 
-            <span className="text-primary">Mobile Developer</span>
+            <span className="text-white">Mobile Developer</span>
 
             <span className="text-foreground/40 mx-2">|</span>
 
-            <span className="text-shimmer font-medium">React Native</span>
+            <span className="text-primary font-medium">React Native</span>
           </p>
         </motion.div>
 
