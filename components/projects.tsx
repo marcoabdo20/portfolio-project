@@ -1065,7 +1065,7 @@ export default function Projects() {
               lg:text-6xl
             "
           >
-            <span className="text-gradient-gold">
+            <span className="text-primary">
               Featured Projects
             </span>
           </h2>
