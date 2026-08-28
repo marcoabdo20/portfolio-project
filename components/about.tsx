@@ -193,7 +193,7 @@ export default function About() {
               lg:text-6xl
             "
           >
-            <span className="text-gradient-gold">
+            <span className="text-primary">
               Who I Am
             </span>
           </h2>
@@ -727,7 +727,7 @@ export default function About() {
                     "
                   >
                     Turning Ideas Into
-                    <span className="text-gradient-gold">
+                    <span className="text-primary">
                       {" "}
                       Reality
                     </span>

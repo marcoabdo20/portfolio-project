@@ -311,18 +311,13 @@ html {
   background-size: 250% 100%;
   -webkit-background-clip: text;
   background-clip: text;
-  /* color: transparent; */
+  color: transparent;
   animation: shimmer-sweep 4.5s ease-in-out infinite;
 }
 
 .text-gradient-gold {
   display: inline-block;
-  background: linear-gradient(
-    120deg,
-    var(--primary),
-    oklch(0.95 0.06 95),
-    var(--primary)
-  );
+ 
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
