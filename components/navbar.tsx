@@ -1,46 +1,44 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useCallback } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 40)
-  }, [])
+    setIsScrolled(window.scrollY > 40);
+  }, []);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [handleScroll])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
 
   const scrollToSection = useCallback((id: string) => {
-    const element = document.getElementById(id)
+    const element = document.getElementById(id);
 
     element?.scrollIntoView({
       behavior: "smooth",
       block: "start",
-    })
+    });
 
-    setIsMobileMenuOpen(false)
-  }, [])
+    setIsMobileMenuOpen(false);
+  }, []);
 
   const menuItems = [
     { label: "About", id: "about" },
     { label: "Projects", id: "projects" },
     { label: "Contact", id: "contact" },
-  ]
+  ];
 
   const prefersReducedMotion =
     typeof window !== "undefined" &&
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   return (
     <>
@@ -53,9 +51,7 @@ export default function Navbar() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         className={`fixed left-0 top-0 z-50 w-full transition-all duration-500 ${
-          isScrolled
-            ? "bg-background/70 backdrop-blur-xl"
-            : "bg-transparent"
+          isScrolled ? "bg-background/70 backdrop-blur-xl" : "bg-transparent"
         }`}
       >
         {/* Gold bottom line */}
@@ -100,7 +96,7 @@ export default function Navbar() {
 
             {/* Logo */}
 
-            <span className="text-2xl font-bold tracking-tight text-gradient-gold">
+            <span className="text-2xl font-bold tracking-tight text-primary">
               MA
             </span>
 
@@ -161,9 +157,7 @@ export default function Navbar() {
             }
             className="group relative hidden overflow-hidden rounded-lg border border-primary/40 bg-primary/[0.04] px-5 py-2.5 text-sm font-medium text-primary backdrop-blur-sm transition-all duration-500 hover:border-primary hover:bg-primary/10 hover:shadow-[0_0_25px_var(--gold-soft)] md:block"
           >
-            <span className="relative z-10">
-              Get in Touch
-            </span>
+            <span className="relative z-10">Get in Touch</span>
 
             {/* Hover shine */}
 
@@ -184,9 +178,7 @@ export default function Navbar() {
                     scale: 0.9,
                   }
             }
-            onClick={() =>
-              setIsMobileMenuOpen(!isMobileMenuOpen)
-            }
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="relative flex h-10 w-10 items-center justify-center rounded-lg border border-primary/20 bg-primary/[0.03] md:hidden"
             aria-label="Toggle menu"
             aria-expanded={isMobileMenuOpen}
@@ -252,9 +244,7 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              onClick={() =>
-                setIsMobileMenuOpen(false)
-              }
+              onClick={() => setIsMobileMenuOpen(false)}
               className="fixed inset-0 z-40 bg-background/80 backdrop-blur-md md:hidden"
             />
 
@@ -290,10 +280,8 @@ export default function Navbar() {
                 <div className="mb-12 flex items-center justify-between">
                   <button
                     type="button"
-                    onClick={() =>
-                      scrollToSection("hero")
-                    }
-                    className="text-xl font-bold text-gradient-gold"
+                    onClick={() => scrollToSection("hero")}
+                    className="text-xl font-bold text-primary"
                   >
                     MA
                   </button>
@@ -303,9 +291,7 @@ export default function Navbar() {
                     whileTap={{
                       scale: 0.9,
                     }}
-                    onClick={() =>
-                      setIsMobileMenuOpen(false)
-                    }
+                    onClick={() => setIsMobileMenuOpen(false)}
                     className="flex h-10 w-10 items-center justify-center rounded-lg border border-primary/10 text-foreground/70 transition-colors hover:border-primary/30 hover:text-primary"
                     aria-label="Close menu"
                   >
@@ -328,49 +314,40 @@ export default function Navbar() {
                 {/* Menu */}
 
                 <div className="flex flex-col gap-2">
-                  {menuItems.map(
-                    (item, index) => (
-                      <motion.button
-                        type="button"
-                        key={item.id}
-                        initial={{
-                          opacity: 0,
-                          x: 20,
-                        }}
-                        animate={{
-                          opacity: 1,
-                          x: 0,
-                        }}
-                        transition={
-                          prefersReducedMotion
-                            ? {
-                                duration: 0,
-                              }
-                            : {
-                                delay:
-                                  index * 0.08,
-                              }
-                        }
-                        whileHover={{
-                          x: 5,
-                        }}
-                        onClick={() =>
-                          scrollToSection(
-                            item.id
-                          )
-                        }
-                        className="group flex items-center justify-between rounded-lg px-4 py-4 text-left text-lg font-medium text-foreground/60 transition-all duration-300 hover:bg-primary/[0.05] hover:text-primary"
-                      >
-                        <span>
-                          {item.label}
-                        </span>
+                  {menuItems.map((item, index) => (
+                    <motion.button
+                      type="button"
+                      key={item.id}
+                      initial={{
+                        opacity: 0,
+                        x: 20,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        x: 0,
+                      }}
+                      transition={
+                        prefersReducedMotion
+                          ? {
+                              duration: 0,
+                            }
+                          : {
+                              delay: index * 0.08,
+                            }
+                      }
+                      whileHover={{
+                        x: 5,
+                      }}
+                      onClick={() => scrollToSection(item.id)}
+                      className="group flex items-center justify-between rounded-lg px-4 py-4 text-left text-lg font-medium text-foreground/60 transition-all duration-300 hover:bg-primary/[0.05] hover:text-primary"
+                    >
+                      <span>{item.label}</span>
 
-                        <span className="text-primary/30 transition-transform duration-300 group-hover:translate-x-1">
-                          →
-                        </span>
-                      </motion.button>
-                    )
-                  )}
+                      <span className="text-primary/30 transition-transform duration-300 group-hover:translate-x-1">
+                        →
+                      </span>
+                    </motion.button>
+                  ))}
                 </div>
 
                 {/* Divider */}
@@ -403,9 +380,7 @@ export default function Navbar() {
                   whileTap={{
                     scale: 0.97,
                   }}
-                  onClick={() =>
-                    scrollToSection("contact")
-                  }
+                  onClick={() => scrollToSection("contact")}
                   className="mt-auto w-full rounded-lg bg-primary px-6 py-3.5 font-medium text-primary-foreground shadow-lg transition-all duration-500 hover:shadow-[0_0_30px_var(--gold-mid)]"
                 >
                   Get in Touch
@@ -422,5 +397,5 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }

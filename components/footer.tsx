@@ -2,13 +2,7 @@
 
 import { useCallback } from "react";
 import { motion } from "framer-motion";
-import {
-  Github,
-  Linkedin,
-  Mail,
-  Instagram,
-  ArrowUp,
-} from "lucide-react";
+import { Github, Linkedin, Mail, Instagram, ArrowUp } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -78,10 +72,7 @@ export default function Footer() {
           BACKGROUND GLOW
       ================================================= */}
 
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-      >
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
         {/* Main glow */}
 
         <div
@@ -195,10 +186,7 @@ export default function Footer() {
               md:text-4xl
             "
           >
-            Let's Create Something{" "}
-            <span className="text-gradient-gold">
-              Amazing
-            </span>
+            Let's Create Something <span className="text-primary">Amazing</span>
           </h2>
 
           <p
@@ -211,9 +199,8 @@ export default function Footer() {
               text-foreground/40
             "
           >
-            Have an idea or a project in mind?
-            Let's turn it into a great digital
-            experience.
+            Have an idea or a project in mind? Let's turn it into a great
+            digital experience.
           </p>
         </motion.div>
 
@@ -306,9 +293,8 @@ export default function Footer() {
                 text-foreground/40
               "
             >
-              Front-End Developer crafting elegant
-              and high-performance digital experiences
-              for web and mobile.
+              Front-End Developer crafting elegant and high-performance digital
+              experiences for web and mobile.
             </p>
 
             {/* Availability */}
@@ -378,10 +364,7 @@ export default function Footer() {
               Navigation
             </h3>
 
-            <nav
-              aria-label="Footer navigation"
-              className="flex flex-col gap-3"
-            >
+            <nav aria-label="Footer navigation" className="flex flex-col gap-3">
               {[
                 {
                   label: "Home",
@@ -403,9 +386,7 @@ export default function Footer() {
                 <button
                   key={item.id}
                   type="button"
-                  onClick={() =>
-                    scrollToSection(item.id)
-                  }
+                  onClick={() => scrollToSection(item.id)}
                   className="
                     group
                     flex
@@ -489,11 +470,7 @@ export default function Footer() {
                   <motion.a
                     key={social.label}
                     href={social.href}
-                    target={
-                      social.label === "Email"
-                        ? undefined
-                        : "_blank"
-                    }
+                    target={social.label === "Email" ? undefined : "_blank"}
                     rel={
                       social.label === "Email"
                         ? undefined
@@ -584,10 +561,8 @@ export default function Footer() {
             "
           >
             © {currentYear}{" "}
-            <span className="text-foreground/50">
-              Marco Abdo
-            </span>
-            . All rights reserved.
+            <span className="text-foreground/50">Marco Abdo</span>. All rights
+            reserved.
           </p>
 
           {/* Built with */}
@@ -598,14 +573,8 @@ export default function Footer() {
               text-foreground/20
             "
           >
-            Built with{" "}
-            <span className="text-primary/60">
-              React.js
-            </span>{" "}
-            &{" "}
-            <span className="text-primary/60">
-              Next.js
-            </span>
+            Built with <span className="text-primary/60">React.js</span> &{" "}
+            <span className="text-primary/60">Next.js</span>
           </p>
 
           {/* Back to top */}

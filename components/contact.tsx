@@ -211,7 +211,7 @@ export default function Contact() {
               lg:text-6xl
             "
           >
-            Let's <span className="text-gradient-gold">Connect</span>
+            Let's <span className="text-primary">Connect</span>
           </h2>
 
           <p
@@ -668,7 +668,7 @@ export default function Contact() {
                 >
                   Let's Build
                   <br />
-                  Something <span className="text-gradient-gold">Great</span>
+                  Something <span className="text-primary">Great</span>
                 </h3>
 
                 <p
