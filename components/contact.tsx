@@ -333,7 +333,7 @@ export default function Contact() {
 
             {/* Form */}
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-5" suppressHydrationWarning>
               {/* Name */}
 
               <div>
@@ -365,6 +365,7 @@ export default function Contact() {
                       name: e.target.value,
                     })
                   }
+                  suppressHydrationWarning
                   className="
                     w-full
                     rounded-xl
@@ -418,6 +419,7 @@ export default function Contact() {
                       email: e.target.value,
                     })
                   }
+                  suppressHydrationWarning
                   className="
                     w-full
                     rounded-xl
@@ -471,6 +473,7 @@ export default function Contact() {
                       message: e.target.value,
                     })
                   }
+                  suppressHydrationWarning
                   className="
                     w-full
                     resize-none
@@ -505,6 +508,7 @@ export default function Contact() {
                 whileTap={{
                   scale: status === "sending" ? 1 : 0.98,
                 }}
+                suppressHydrationWarning
                 className={`
                   group
                   flex

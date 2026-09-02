@@ -37,7 +37,7 @@ export default function AnimatedBackground() {
     }
 
     const animate = () => {
-      ctx.fillStyle = "rgba(13, 27, 42, 0.1)"
+      ctx.fillStyle = "rgba(6, 29, 53, 0.726)"
       ctx.fillRect(0, 0, canvas.width, canvas.height)
 
       particles.forEach((particle) => {
@@ -73,7 +73,7 @@ export default function AnimatedBackground() {
     <canvas
       ref={canvasRef}
       className="fixed inset-0 z-0"
-      style={{ background: "linear-gradient(135deg, #0d1b2a 0%, #1a2f4a 100%)" }}
+      style={{ background: "linear-gradient(135deg, #0d1b2a 0%, #132944 100%)" }}
     />
   )
 }
